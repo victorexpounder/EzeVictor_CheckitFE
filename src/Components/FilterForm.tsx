@@ -22,9 +22,9 @@ const FilterForm = (props: Props) => {
     });
 
     const initialValues = {
-    status: '',
-    original_launch: '',
-    type: '',
+        status: '',
+        original_launch: '',
+        type: '',
     };
     const statusOption = [
         '',
@@ -33,12 +33,14 @@ const FilterForm = (props: Props) => {
         'unknown',
         'retired'
     ]
-
+    //filter function 
     const handleSearch = (filters: any)=>{
         const filteredCapsules = capsules?.filter((capsule : any) =>
             (!filters.status || capsule.status.includes(filters.status)) &&
-            (!filters.original_launch || (capsule.original_launch && capsule.original_launch.startsWith(filters.original_launch))) &&
-            (!filters.type || capsule.type.replace(/\s+/g, '').toLowerCase().includes(filters.type.trim().toLowerCase()))
+            (!filters.original_launch || (capsule.original_launch && 
+            capsule.original_launch.startsWith(filters.original_launch))) &&
+            (!filters.type || capsule.type.replace(/\s+/g, '').toLowerCase()
+            .includes(filters.type.replace(/\s+/g, '').trim().toLowerCase()))
         );
         console.log(filters.status)
         dispatch(addfilter(filteredCapsules))

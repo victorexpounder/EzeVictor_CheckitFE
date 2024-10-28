@@ -17,7 +17,7 @@ const AddData = (props: Props) => {
     const filteredcapsules = useSelector((state: any)=> state.filteredCapsules.capsules)
     const existingSerials = filteredcapsules.map((capsule:any) => capsule.capsule_serial);
     const dispatch = useDispatch();
-
+    //validation schema with yup
     const newCapsuleValidationSchema = Yup.object({
         capsule_serial: Yup.string()
         .required('Serial is required')
