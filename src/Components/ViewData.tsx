@@ -11,7 +11,7 @@ interface capsulev {
 }
 
 interface Props {
-    selectedCapsule : capsulev | null
+    selectedCapsule : any
 }
 
 const ViewData = (props: Props) => {
