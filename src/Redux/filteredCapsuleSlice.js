@@ -23,10 +23,15 @@ export const filteredCapsuleSlice =  createSlice({
             if (index !== -1) {
               state.capsules[index] = { ...state.capsules[index], ...updatedData };
             }
+        },
+        resetF : (state, action) =>{
+            state.capsules = action.payload
+            state.loading = false;
+            state.error = false
         }
 
     }
 })
 
-export const {addfilter, editFilteredCapsule} = filteredCapsuleSlice.actions;
+export const {addfilter, editFilteredCapsule, resetF} = filteredCapsuleSlice.actions;
 export default filteredCapsuleSlice.reducer;

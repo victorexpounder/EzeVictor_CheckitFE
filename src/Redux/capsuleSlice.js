@@ -31,7 +31,13 @@ export const capsuleSlice =  createSlice({
             if (index !== -1) {
               state.capsules[index] = { ...state.capsules[index], ...updatedData };
             }
-        }
+        },
+
+        reset : (state, action) =>{
+            state.capsules = action.payload
+            state.loading = false;
+            state.error = false
+        },
 
         
 
@@ -40,5 +46,5 @@ export const capsuleSlice =  createSlice({
     }
 })
 
-export const {fetchCapsulesLoading, fetchCapsulesSuccess, add, editCapsule} = capsuleSlice.actions;
+export const {fetchCapsulesLoading, fetchCapsulesSuccess, add, editCapsule, reset} = capsuleSlice.actions;
 export default capsuleSlice.reducer;
