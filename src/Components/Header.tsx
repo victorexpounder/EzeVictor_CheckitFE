@@ -34,18 +34,7 @@ const Header = (props: Props) => {
         <div className=' w-full flex justify-between p-1.5 items-center sm:p-2.5'>
             <div>Welcome <strong>Elon Musk</strong></div>
             <div className='card flex flex-wrap justify-content-center gap-4 items-center'>
-                <div className='card flex-wrap justify-content-center gap-4 items-center hidden sm:flex'>
-                    <i className="pi pi-bell p-overlay-badge cursor-pointer" style={{ fontSize: '1.4rem' }}>
-                        <Badge ></Badge>
-                    </i>
-                    <i className="pi pi-calendar p-overlay-badge cursor-pointer" style={{ fontSize: '1.4rem' }}>
-                        <Badge  ></Badge>
-                    </i>
-                    <i className="pi pi-envelope p-overlay-badge cursor-pointer" style={{ fontSize: '1.4rem' }}>
-                        <Badge ></Badge>
-                    </i>
-
-                </div>
+                
                
                 {isDarkMode?
                     <i className='pi pi-moon cursor-pointer' style={{ fontSize: '1.4rem' }} onClick={toggleTheme}></i>

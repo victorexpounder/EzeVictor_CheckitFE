@@ -1,17 +1,20 @@
 
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Menu } from 'primereact/menu';
 import { Toast } from 'primereact/toast';
 import { getCapsules } from '@/getCapsules';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { reset } from '@/Redux/capsuleSlice';
 import { resetF } from '@/Redux/filteredCapsuleSlice';
+import { Dialog } from 'primereact/dialog';
+import AddData from './AddData';
 
 export default function GroupDemo() {
     const toast = useRef(null);
     const dispatch = useDispatch();
-
+    const [addVisible, setAddVisible] = useState(false)
+    const filterdCapsules = useSelector((state: any)=> state.filteredCapsules.capsules)
 
     const Reset = async()=>{
         const capsulesres = await getCapsules()
@@ -20,13 +23,21 @@ export default function GroupDemo() {
         console.log(capsulesres)
     }
 
+    useEffect(()=>{
+        setAddVisible(false)
+        
+    },[filterdCapsules])
+
     const items = [
         {
             label: 'Documents',
             items: [
                 {
                     label: 'New',
-                    icon: 'pi pi-plus'
+                    icon: 'pi pi-plus',
+                    command: () => {
+                         setAddVisible(true)
+                     }
                 },
                 {
                     label: 'Search',
@@ -52,9 +63,13 @@ export default function GroupDemo() {
     ];
 
     return (
-        <div className="card flex justify-content-center min-h-full">
+        <div className="card flex justify-center min-h-full">
             <Toast ref={toast} />
             <Menu model={items} className='min-h-full '/>
+
+            <Dialog header="Add Capsule" visible={addVisible} style={{ width: '80vw' }} onHide={() => {if (!addVisible) return; setAddVisible(false); }}>
+                <AddData/>
+            </Dialog>
         </div>
     )
 }
